@@ -65,3 +65,29 @@ function formsubmit() {
   alert("Form submitted successfully!");
   return true;
 }
+
+function table() {
+  let tableNumber = document.getElementById("tableNumber").value.trim();
+  let table = document.getElementById("table");
+
+  table.innerHTML = "";
+
+  // Validate the input
+  if (tableNumber === "" || isNaN(tableNumber) || tableNumber <= 0) {
+    alert("Please enter a valid positive number.");
+    document.getElementById("tableNumber").style.border = "2px solid red";
+    return;
+  }
+
+  // Reset the input field border
+  document.getElementById("tableNumber").style.border = "";
+
+  // Generate the multiplication table
+  for (let i = 1; i <= 10; i++) {
+    let row = document.createElement("tr");
+    let cell = document.createElement("td");
+    cell.innerHTML = `${tableNumber} x ${i} = ${tableNumber * i}`;
+    row.appendChild(cell);
+    table.appendChild(row);
+  }
+}

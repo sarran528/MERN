@@ -22,13 +22,18 @@
             <input type="text" id="phone" name="phone" placeholder="phone">
         </div>
         <div class="input-group">
-            <input type="int" id="age" name="age" placeholder="age">
+            <input type="number" id="age" name="age" placeholder="age">
         </div>
         <div class="input-group">
             <input type="password" id="password" name="password" placeholder="password">   
         </div>
         <button type="submit" onclick="formsubmit()">OK</button>
     </form>
+<div class="table">
+    <input type="number" id="tableNumber" placeholder="Enter number">
+    <button onclick="table()">Generate Table</button>
+    <table id="table" style="margin-top: 20px; border-collapse: collapse; width: 50%;"></table>
+</div>
 </body>
 <script src="index.js">   
 </script>

@@ -1,4 +1,3 @@
-
 body {
  font-family: Arial, sans-serif;
  background-color: #f4f4f4;
@@ -39,7 +38,10 @@ input {
  border-radius: 5px;
  font-size: 14px;
 }
-
+.table input {
+    
+    margin-top: 20px;
+}
 button {
  background: #007bff;
  color: white;
@@ -55,4 +57,22 @@ button {
 
 button:hover {
  background: #0056b3;
+}
+
+#table {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+#table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#table tr:hover {
+  background-color: #ddd;
+}
+
+#table td {
+  padding: 8px;
+  border: 1px solid #ddd;
 }
