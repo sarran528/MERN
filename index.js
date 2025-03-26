@@ -1,38 +1,62 @@
 function formsubmit() {
   // Get form field values
-  let name = document.getElementById("name").value.trim();
-  let email = document.getElementById("email").value.trim();
-  let age = document.getElementById("age").value.trim();
-  let password = document.getElementById("password").value;
+  let name = document.getElementById("name");
+  let email = document.getElementById("email");
+  let phone = document.getElementById("phone");
+  let age = document.getElementById("age");
+  let password = document.getElementById("password");
 
   // Initialize an array to collect error messages
   let errorMessages = [];
+  let isValid = true;
+
+  // Helper function to mark fields as invalid
+  function markInvalid(field, message) {
+    field.style.border = "2px solid red";
+    errorMessages.push(message);
+    isValid = false;
+  }
+
+  // Helper function to reset field styles
+  function resetField(field) {
+    field.style.border = "";
+  }
 
   // Validate Name
-  if (name === "") {
-    errorMessages.push("Name is required.");
+  resetField(name);
+  if (name.value.trim() === "") {
+    markInvalid(name, "Name is required.");
   }
 
   // Validate Email
+  resetField(email);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    errorMessages.push("Please enter a valid email address.");
+  if (email.value.trim() === "" || !emailRegex.test(email.value.trim())) {
+    markInvalid(email, "Please enter a valid email address.");
+  }
+
+  // Validate Phone
+  resetField(phone);
+  if (phone.value.trim() === "") {
+    markInvalid(phone, "Phone number is required.");
   }
 
   // Validate Age
-  if (age === "" || isNaN(age) || age <= 0) {
-    errorMessages.push("Please enter a valid age.");
-  } else if (age < 18) {
-    errorMessages.push("You are not eligible to vote.");
+  resetField(age);
+  if (age.value.trim() === "" || isNaN(age.value.trim()) || age.value.trim() <= 0) {
+    markInvalid(age, "Please enter a valid age.");
+  } else if (age.value.trim() < 18) {
+    markInvalid(age, "You are not eligible to vote.");
   }
 
   // Validate Password
-  if (password.length < 8) {
-    errorMessages.push("Password should be at least 8 characters long.");
+  resetField(password);
+  if (password.value.trim().length < 8) {
+    markInvalid(password, "Password should be at least 8 characters long.");
   }
 
   // If there are any error messages, display them and prevent form submission
-  if (errorMessages.length > 0) {
+  if (!isValid) {
     alert(errorMessages.join("\n"));
     return false;
   }
