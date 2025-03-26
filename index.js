@@ -106,7 +106,10 @@ async function fetchProducts() {
 function displayProducts(products) {
   const productsDiv = document.getElementById('products');
   productsDiv.innerHTML = ''; // Clear previous content
-
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "fetch.css"; // Make sure the file is in the correct location
+  document.head.appendChild(link);
   products.forEach(product => {
     const productDiv = document.createElement('div');
     productDiv.classList.add('product');
