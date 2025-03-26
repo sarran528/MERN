@@ -91,3 +91,31 @@ function table() {
     table.appendChild(row);
   }
 }
+
+async function fetchProducts() {
+  try {
+    const response = await fetch('https://fakestoreapi.com/products');
+    const products = await response.json();
+    displayProducts(products);
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    alert("Failed to fetch products. Please try again later.");
+  }
+}
+
+function displayProducts(products) {
+  const productsDiv = document.getElementById('products');
+  productsDiv.innerHTML = ''; // Clear previous content
+
+  products.forEach(product => {
+    const productDiv = document.createElement('div');
+    productDiv.classList.add('product');
+    productDiv.innerHTML = `
+      <h3>${product.title}</h3>
+      <p>${product.description}</p>
+      <p>Price: $${product.price}</p>
+      <img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;" />
+    `;
+    productsDiv.appendChild(productDiv); // Append to the correct container
+  });
+}
